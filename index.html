@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  </head>
+  <body class="font-['Poppins']">
+    <div
+      class="absolute inset-0 -z-10 h-full w-full bg-white bg-[linear-gradient(to_right,#f0f0f0_1px,transparent_1px),linear-gradient(to_bottom,#f0f0f0_1px,transparent_1px)] bg-[size:6rem_4rem]"
+    >
+      <div
+        class="absolute bottom-0 left-0 right-0 top-0 bg-[radial-gradient(circle_500px_at_120%_20px,#d5c5ff,transparent)]"
+      ></div>
+    </div>
+    <div
+      class="w-full h-screen flex justify-center items-center flex-col gap-2"
+      id="content"
+    >
+      <img
+        src="https://i.pinimg.com/originals/bb/fe/c1/bbfec16344796548085418e3111a24a6.gif"
+        alt="2 panda selfie"
+        width="300"
+        height="300"
+        class="rounded-2xl"
+      />
+      <button
+        class="bg-indigo-300 text-white px-16 py-2 rounded-md cursor-pointer shadow-lg hover:bg-indigo-400 transition duration-300 ease-in-out hover:scale-[1.1]"
+        onclick="showAlert()"
+      >
+        <span class="text-md">lagi</span>
+      </button>
+    </div>
+
+    <script>
+      const content = document.getElementById("content");
+
+      const CustomSwal = Swal.mixin({
+        allowOutsideClick: false,
+
+        confirmButtonText: "OK",
+        backdrop: "#00000090",
+      });
+      let namaGlobal = "";
+
+      async function randomLucu() {
+        let kata = "";
+        const respons = await fetch(
+          "https://candaan-api.vercel.app/api/text/random"
+        );
+        const data = await respons.json();
+        kata = await data.data;
+        return kata;
+      }
+
+      async function showAlertKalimatLucu() {
+        const kalimat = await randomLucu();
+        CustomSwal.fire({
+          text: kalimat,
+          showCancelButton: true,
+          confirmButtonText: "Lainnya",
+          cancelButtonText: "Sudah",
+        }).then((result) => {
+          if (result.isConfirmed) {
+            showAlertKalimatLucu();
+          }
+        });
+      }
+
+      async function showAlert() {
+        if (!namaGlobal) {
+          const { value: nama } = await CustomSwal.fire({
+            imageUrl:
+              "https://media.tenor.com/Xw_rF46ChLkAAAAj/bubu-bubu-dudu.gif",
+
+            imageWidth: 100,
+            imageHeight: 100,
+            imageAlt: "Logo Kustom",
+            input: "text",
+            title: "Masukkan nama kamu",
+            inputPlaceholder: "..........",
+            confirmButtonText: "Lanjut",
+          });
+          if (nama) {
+            namaGlobal = nama;
+          }
+        }
+        if (namaGlobal) {
+          CustomSwal.fire({
+            title: "Halo " + namaGlobal + "!",
+            imageUrl:
+              "https://i.pinimg.com/originals/e1/1c/9b/e11c9b78a11e80113cef835edcf06ddd.gif",
+
+            imageWidth: 100,
+            imageHeight: 100,
+            imageAlt: "Logo Kustom",
+            confirmButtonText: "Lanjut",
+          }).then((result) => {
+            CustomSwal.fire({
+              title: namaGlobal + " pilih tombol ini untuk bermain :>",
+              imageUrl:
+                "https://media.tenor.com/CtJyE1MwBKYAAAAj/sseeyall-bubu-dudu.gif",
+
+              imageWidth: 100,
+              imageHeight: 100,
+              showDenyButton: true,
+              showCancelButton: true,
+              confirmButtonText: "Main",
+              cancelButtonText: "Kalimat Lucu",
+              denyButtonText: `Ramal`,
+              confirmButtonColor: "oklch(85.5% 0.138 181.071)",
+              cancelButtonColor: "oklch(81.1% 0.111 293.571)",
+              denyButtonColor: "oklch(71.8% 0.202 349.761)",
+            }).then((result) => {
+              if (result.isConfirmed) {
+                CustomSwal.fire({
+                  title: "Balum ada :v",
+                  text: "Kira kira mau ditambah apa bagian ini?",
+                  imageUrl:
+                    "https://i.pinimg.com/originals/fc/6a/21/fc6a21830fb19a8119c7ac92d5b97b01.gif",
+
+                  imageWidth: 100,
+                  imageHeight: 100,
+                  imageAlt: "Logo Kustom",
+                  confirmButtonText: "Aku tau",
+                  showCancelButton: true,
+                  cancelButtonText: "Aku tak tau",
+                }).then((result) => {
+                  if (result.isConfirmed) {
+                    CustomSwal.fire({
+                      title: "Langsung Chat hamzah 👌",
+                      confirmButtonText: "OK",
+                      imageUrl:
+                        "https://i.pinimg.com/originals/58/72/f2/5872f235d1276235c76581c0fadbfac2.gif",
+
+                      imageWidth: 100,
+                      imageHeight: 100,
+                      imageAlt: "Logo Kustom",
+                    }).then((result) => {
+                      let timerInterval;
+                      CustomSwal.fire({
+                        title: "Menunggu",
+                        html: "<b></b> milidetik.",
+                        timer: 2000,
+                        timerProgressBar: true,
+                        didOpen: () => {
+                          Swal.showLoading();
+                          const timer = Swal.getPopup().querySelector("b");
+                          timerInterval = setInterval(() => {
+                            timer.textContent = `${Swal.getTimerLeft()}`;
+                          }, 100);
+                        },
+                        willClose: () => {
+                          clearInterval(timerInterval);
+                        },
+                      }).then((result) => {
+                        /* Read more about handling dismissals below */
+                        if (result.dismiss === Swal.DismissReason.timer) {
+                          console.log("I was closed by the timer");
+                        }
+                      });
+                      window.location.href =
+                        "https://wa.me/6285336889508?text=zah+aku+tau+mau+ditambah+apa+bagian+gamenya";
+                    });
+                  } else {
+                    CustomSwal.fire({
+                      title: "ah ya udah",
+                      confirmButtonText: "OK",
+                      imageUrl:
+                        "https://media.tenor.com/BLpa6W0zsOYAAAAj/bubu-dudu-sseeyall.gif",
+
+                      imageWidth: 100,
+                      imageHeight: 100,
+                      imageAlt: "Logo Kustom",
+                    });
+                  }
+                });
+              } else if (result.isDenied) {
+                CustomSwal.fire({
+                  title: "Aku ramal kamu lagi diposisi itu :v",
+                  imageUrl:
+                    "https://i.pinimg.com/originals/bd/55/a5/bd55a511bb88a5572535a0337ed5c5e9.gif",
+
+                  imageWidth: 100,
+                  imageHeight: 100,
+                  imageAlt: "Logo Kustom",
+                  confirmButtonText: "Bener",
+                  showCancelButton: true,
+                  cancelButtonText: "Salah",
+                }).then((result) => {
+                  if (result.isConfirmed) {
+                    CustomSwal.fire({
+                      title: "Ah easy",
+                      imageUrl:
+                        "https://media.tenor.com/ivlixHuP8r0AAAAj/dudu-dudu-bubu.gif",
+
+                      imageWidth: 100,
+                      imageHeight: 100,
+                      imageAlt: "Logo Kustom",
+                    });
+                  } else {
+                    CustomSwal.fire({
+                      title: "Haha salah ya ",
+                      imageUrl:
+                        "https://i.pinimg.com/originals/3e/bf/2e/3ebf2ed73870f72966f9764300b81dc6.gif",
+
+                      imageWidth: 100,
+                      imageHeight: 100,
+                      imageAlt: "Logo Kustom",
+                    });
+                  }
+                });
+              } else {
+                showAlertKalimatLucu();
+              }
+            });
+          });
+        } else {
+          CustomSwal.fire({
+            title: "Tolong masukkan nama kamu ya!",
+            imageUrl:
+              "https://i.pinimg.com/originals/34/3f/18/343f18190d7d7b6e607534071eda6967.gif",
+
+            imageWidth: 100,
+            imageHeight: 100,
+            imageAlt: "Logo Kustom",
+            confirmButtonText: "Iyaa",
+          }).then((result) => {
+            if (result.isConfirmed) {
+              showAlert();
+            }
+          });
+        }
+      }
+      showAlert();
+    </script>
+  </body>
+</html>
