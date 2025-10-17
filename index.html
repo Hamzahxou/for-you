@@ -9,14 +9,18 @@
     <meta name="description" content="For You" />
     <meta name="keywords" content="For You" />
     <meta name="author" content="Hamzah" />
-     <meta
+    <meta
       property="og:image"
       content="https://i.pinimg.com/originals/bb/fe/c1/bbfec16344796548085418e3111a24a6.gif"
     />
     <meta property="og:type" content="website" />
     <meta property="og:title" content="For You" />
     <meta property="og:url" content="https://hamzahxou.github.io/for-you/" />
-    <link rel="icon" href="https://i.pinimg.com/originals/bb/fe/c1/bbfec16344796548085418e3111a24a6.gif" />
+    <link
+      rel="icon"
+      href="https://i.pinimg.com/originals/bb/fe/c1/bbfec16344796548085418e3111a24a6.gif"
+    />
+
     <link
       href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
       rel="stylesheet"
@@ -41,7 +45,7 @@
         alt="2 panda selfie"
         width="300"
         height="300"
-        class="rounded-2xl"
+        class="rounded-2xl shadow-lg"
       />
       <button
         class="bg-indigo-300 text-white px-16 py-2 rounded-md cursor-pointer shadow-lg hover:bg-indigo-400 transition duration-300 ease-in-out hover:scale-[1.1]"
@@ -50,7 +54,7 @@
         <span class="text-md">lagi</span>
       </button>
     </div>
-
+    
     <script>
       const content = document.getElementById("content");
 
@@ -72,9 +76,23 @@
         return kata;
       }
 
+      function randomGif() {
+        const data = [
+          "https://media.tenor.com/L0OFpUCj9bkAAAAM/emote.gif",
+          "https://media.tenor.com/jyM5vrXtwsEAAAAj/bubu-dudu-sseeyall.gif",
+          "https://i.pinimg.com/originals/7c/45/b7/7c45b74379a9f773bb54ba399925bf81.gif",
+          "https://gifdb.com/images/high/bubu-shakes-dudu-okacyxxtlvxaxebk.gif",
+        ];
+        return data[Math.floor(Math.random() * data.length)];
+      }
+
       async function showAlertKalimatLucu() {
         const kalimat = await randomLucu();
         CustomSwal.fire({
+          imageUrl: randomGif(),
+          imageWidth: 100,
+          imageHeight: 100,
+          imageAlt: "Logo Kustom",
           text: kalimat,
           showCancelButton: true,
           confirmButtonText: "Lainnya",
